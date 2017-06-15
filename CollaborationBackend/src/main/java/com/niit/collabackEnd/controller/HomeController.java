@@ -14,5 +14,17 @@ public class HomeController {
     	ModelAndView mv=new ModelAndView("index");
     	return mv;
     }
+	
+	public HomeController()
+	{
+		System.out.println("Instantiating Home Controller");
+		
+	}
+	
+	/*@RequestMapping("/")
+	public String home()
+	{
+		return "index";
+	}*/
 
 }

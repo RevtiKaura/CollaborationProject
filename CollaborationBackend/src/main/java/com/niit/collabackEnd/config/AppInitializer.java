@@ -8,20 +8,17 @@ public class AppInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {
 
 	
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] {AppConfig.class,HibernateConfig.class};
+	}
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {AppConfig.class};
+		return null;
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
-	}
-
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[] { "/" };
 	}
 
 }

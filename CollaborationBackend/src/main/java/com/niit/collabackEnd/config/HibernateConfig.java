@@ -1,6 +1,5 @@
 package com.niit.collabackEnd.config;
 
-
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
  
@@ -22,17 +21,20 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 public class HibernateConfig {
 
-	@Autowired
-    @Bean(name="datasource")
+
+
+	
+    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-        dataSource.setUsername("hr");	        
-        dataSource.setPassword("hr");
+        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+        dataSource.setUsername("Revti");	        
+        dataSource.setPassword("revti");
         return dataSource;
     }
     
+	
 	
 	private Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -43,25 +45,19 @@ public class HibernateConfig {
         return properties;        
     }
     
-		@Autowired
+		
 	    @Bean(name="sessionFactory")
 	    public SessionFactory sessionFactory(DataSource dataSource) {
-	        LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);	        
+	        LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());	        
 	        builder.addProperties(hibernateProperties());
 	        builder.scanPackages("com.niit.collabackEnd.model");
+	        
+	      //  builder.addAnnotatedClasses(Product.class);
 	        return builder.buildSessionFactory();
 	     }
 	
-		/* 
-		 it'll give the DataSource  object to SessionFactory
-		 */
- 
 		 
-	   
 		 
-		/* 
-		it's responsible to manage all type of transactions
-		 */
 	    @Autowired
 	    @Bean(name="transactionManager")
 	    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
