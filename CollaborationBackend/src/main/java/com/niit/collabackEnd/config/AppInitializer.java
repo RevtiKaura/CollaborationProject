@@ -9,7 +9,7 @@ public class AppInitializer extends
 
 	
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {AppConfig.class,HibernateConfig.class};
+		return new Class[] {AppConfig.class};
 	}
 	@Override
 	protected Class<?>[] getServletConfigClasses() {

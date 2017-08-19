@@ -2,13 +2,19 @@ package com.niit.collabackEnd.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import org.springframework.stereotype.Component;
 
 @Entity
+@Table(name="collaboration_user")
+@Component
 public class User implements Serializable{
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int userId;
+
 	private String username;
 	private String firstname;
 	private String lastname;
@@ -16,11 +22,26 @@ public class User implements Serializable{
 	private String dob;
 	private String email;
 	private String gender;
-	private String role;
+	private boolean role;
 	private String address;
 	private String phone;
+	private boolean isOnline;
 	private boolean status;
 	
+	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	public boolean isOnline() {
+		return isOnline;
+	}
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -63,11 +84,11 @@ public class User implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getRole() {
+	public boolean getRole() {
 		return role;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(boolean b) {
+		this.role = b;
 	}
 	public String getAddress() {
 		return address;
