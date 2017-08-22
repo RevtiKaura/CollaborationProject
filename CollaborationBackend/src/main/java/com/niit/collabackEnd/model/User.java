@@ -22,7 +22,7 @@ public class User implements Serializable{
 	private String dob;
 	private String email;
 	private String gender;
-	private boolean role;
+	private String role;
 	private String address;
 	private String phone;
 	private boolean isOnline;
@@ -84,11 +84,12 @@ public class User implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public boolean getRole() {
+
+	public String getRole() {
 		return role;
 	}
-	public void setRole(boolean b) {
-		this.role = b;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public String getAddress() {
 		return address;

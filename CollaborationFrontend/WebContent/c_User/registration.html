@@ -9,38 +9,155 @@
  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="container">
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-    <h2>Register</h2>
-    <form name="form" ng-submit="register()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-            <label for="username">First name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="user.firstName" required />
-            <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+  <div data-ng-show='user.errorMessage'>
+	<div class="alert alert-danger fade in">{{user.errorMessage}}</div>
+  </div>
+  
+  <form data-ng-submit="submit()" name="myForm" class="form-horizontal">
+    
+        <!-- Form Name -->
+        <h2 style="text-align:center">Register page</h2>
+        <!-- Text input-->
+       
+
+		<!-- Text input-->
+        <div class="form-group" >
+          <label class="col-md-4 control-label" for="username" >UserName</label>  
+          <div class="col-md-4">
+         <input type="text" data-ng-model="user.uName" id="username" class="userid form-control input-sm"
+										placeholder="Enter your username" required ng-minlength="3" />
+          </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-            <label for="username">Last name</label>
-            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="user.lastName" required />
-            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+        
+        <!-- Text input-->
+        <div class="form-group" >
+          <label class="col-md-4 control-label" for="firstname" >FirstName</label>  
+          <div class="col-md-4">
+         <input type="text" data-ng-model="user.fName" id="firstname" class="userid form-control input-sm" placeholder="Enter your first name" required ng-minlength="3" />
+          </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required />
-            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="lastname">LastName</label>  
+          <div class="col-md-4">
+         <input type="text" data-ng-model="user.lName" id="lastname" class="username form-control input-sm" placeholder="Enter your last name" required ng-minlength="3" />
+          </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="pass">Password </label>
+          <div class="col-md-4">
+          <input type="password" data-ng-model="user.password" id="pass" class="username form-control input-sm" placeholder="Enter password" required ng-minlength="3" />
+          </div>
         </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Register</button>
-            <a href="#!/login" class="btn btn-link">Cancel</a>
+		
+		<!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="confirmpass">Confirm Password </label>
+          <div class="col-md-4">
+          <input type="password" id="confirmpass" class="username form-control input-sm" placeholder="Enter confirm password" required ng-minlength="3" />
+          </div>
         </div>
-    </form>
-</div>
-</div>
-</div>
+        
+        <!-- Date input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dob">Date of Birth</label>
+          <div class="col-md-4">
+            <input type="date" id="dob" class="username form-control input-sm" data-ng-model="user.dob" />
+          </div>
+        </div>
+
+        <!-- email input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email</label>
+          <div class="col-md-4">
+           <input type="email" data-ng-model="user.emailId" id="email" class="email form-control input-sm"
+										placeholder="Enter your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required />
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="contact">mobile</label>  
+          <div class="col-md-4">
+          <input type="tel" data-ng-model="user.phoneNo" id="contact"
+										class="mobile form-control input-sm"
+										placeholder="Enter your contact number" pattern="[9|7|8][0-9]{9}" required />
+    
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="gen">Gender</label> 
+            <div class="col-md-4">
+            	<div class="radio">
+								<label class="radio-inline"> <input type="radio" id="gen"
+									name="role" value="Male" data-ng-model="user.gen" >
+									Male
+								</label> 
+								<label class="radio-inline"> <input type="radio" id="gen"
+									name="role" value="Female" data-ng-model="user.gen" >
+									Female
+								</label> 
+				</div>
+            </div> 
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="address">Address</label>  
+          <div class="col-md-4">
+          <input type="text" width="100" height="50"
+										data-ng-model="user.address" id="address"
+										class="form-control input-sm"
+										placeholder="Enter your Address" />
+    
+          </div>
+        </div>
+    <div class="form-group">
+          <label class="col-md-4 control-label" for="name" style="text-color:white">Role</label>  
+          <div class="col-md-4">
+         <div class="container">
+			<div class="radio">
+			  <label class="radio-inline"> <input type="radio" id="Role" name="role" value="STUDENT" data-ng-model="user.role">
+			     Student
+			  </label> 
+			  <label class="radio-inline"> <input type="radio" id="Role" name="role" value="ALUMINI" data-ng-model="user.role">
+			   Alumni
+			  </label> 
+			  <label class="radio-inline"> <input type="radio" id="Role" name="role" value="EMPLOYEE" data-ng-model="user.role" >
+			   Employee
+			  </label>
+			</div>
+          </div>
+        </div>
+        </div>
+       
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="save"></label>
+          <div class="col-md-8">
+            <button id="save" type="submit" name="save" onclick="Validate()" class="btn btn-success">Save</button>
+           
+          </div>
+        </div>
+         </form>
+          <div style="text-align:center">
+          <p style="text-color:white">Already registered login here</p>
+           <a href="#/login"> <button   class="btn btn-primary">Login</button></a>
+          </div>
+
+	<script>
+		function Validate() {
+			var password = document.getElementById("pass").value;
+			var confirmpass = document.getElementById("confirmpass").value;
+			if (password != confirmpass) {
+				alert("Password does Not Match.");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>
